@@ -30,6 +30,11 @@ angular
                 listPage.newCardForm[index] = !listPage.newCardForm[index];
             };
 
+            function setUserBoard() {
+                $window.localStorage.setItem('current-user-boards', JSON.stringify(listPage.boards));
+                $window.localStorage.setItem('user-boards', JSON.stringify(allUsersBoards));
+            }
+
             if ($window.localStorage.getItem('user-boards')) {
                 allUsersBoards = JSON.parse($window.localStorage.getItem('user-boards'));
                 currentUserBoards = $filter('filter')(allUsersBoards, { user_id: $stateParams.userId })[0];
@@ -45,24 +50,26 @@ angular
             listPage.createNewList = function () {
                 listPage.lists.push(angular.copy(listPage.newList));
                 listPage.newList.name = '';
-                $window.localStorage.setItem('current-user-boards', JSON.stringify(listPage.boards));
-                $window.localStorage.setItem('user-boards', JSON.stringify(allUsersBoards));
+                listPage.newListForm = false;
+                setUserBoard();
             };
 
             listPage.createNewCard = function (index) {
+                if (listPage.newCard.title === '' ||
+                    listPage.newCard.description === '') {
+                    return;
+                }
                 listPage.lists[index].cards.push(angular.copy(listPage.newCard));
                 listPage.newCard = {
                     title: '',
                     description: ''
                 };
                 listPage.toggleCardForm(index);
-                $window.localStorage.setItem('current-user-boards', JSON.stringify(listPage.boards));
-                $window.localStorage.setItem('user-boards', JSON.stringify(allUsersBoards));
+                setUserBoard();
             };
 
             $scope.$watch('lists', function() {
-                $window.localStorage.setItem('current-user-boards', JSON.stringify(listPage.boards));
-                $window.localStorage.setItem('user-boards', JSON.stringify(allUsersBoards));
+                setUserBoard();
             }, true);
         }
     ]);

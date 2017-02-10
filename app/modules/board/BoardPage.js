@@ -10,8 +10,8 @@
 angular
     .module('miniTrello')
     .controller('BoardPage', [
-        '$scope', '$filter', '$http', '$window',
-        function ($scope, $filter, $http, $window) {
+        '$scope', '$filter', '$http', '$stateParams', '$window',
+        function ($scope, $filter, $http, $stateParams, $window) {
             var boardPage = this, allUsersBoards, currentUser, currentUserBoards;
             boardPage.newBoardForm = false;
             boardPage.newBoard = {
@@ -22,11 +22,21 @@ angular
 
             currentUser = JSON.parse($window.localStorage.getItem('current-user'));
 
-            if ($window.localStorage.getItem('user-boards')) {
-                allUsersBoards = JSON.parse($window.localStorage.getItem('user-boards'));
-                currentUserBoards = $filter('filter')(allUsersBoards, { user_id: currentUser.id })[0];
+            function setUserBoard(data) {
+                currentUserBoards = $filter('filter')(data, { user_id: currentUser.id })[0];
+                if (typeof currentUserBoards === 'undefined') {
+                    currentUserBoards = {
+                        user_id: parseInt($stateParams.userId),
+                        boards: []
+                    };
+                }
                 boardPage.boards = currentUserBoards.boards;
                 $window.localStorage.setItem('current-user-boards', JSON.stringify(boardPage.boards));
+            }
+
+            if ($window.localStorage.getItem('user-boards')) {
+                allUsersBoards = JSON.parse($window.localStorage.getItem('user-boards'));
+                setUserBoard(allUsersBoards);
             } else {
                 $http({
                     method: 'GET',
@@ -34,9 +44,7 @@ angular
                 }).then(function (response) {
                     allUsersBoards = response.data;
                     $window.localStorage.setItem('user-boards', JSON.stringify(allUsersBoards));
-                    currentUserBoards = $filter('filter')(allUsersBoards, { user_id: currentUser.id })[0];
-                    boardPage.boards = currentUserBoards.boards;
-                    $window.localStorage.setItem('current-user-boards', JSON.stringify(boardPage.boards));
+                    setUserBoard(allUsersBoards);
                 });
             }
 
@@ -51,11 +59,11 @@ angular
                 boardPage.newBoard.id = boardPage.boards.length + 1;
 
                 if (typeof i === 'undefined') {
-                    i = allUsersBoards.length + 1;
-                    allUsersBoards = allUsersBoards.concat({
-                        user_id: i,
-                        boards: [boardPage.newBoard]
+                    allUsersBoards.push({
+                        user_id: parseInt($stateParams.userId),
+                        boards: [angular.copy(boardPage.newBoard)]
                     });
+                    setUserBoard(allUsersBoards);
                 } else {
                     allUsersBoards[i].boards.push(angular.copy(boardPage.newBoard));
                 }

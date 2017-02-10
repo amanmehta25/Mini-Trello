@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="position">
-                <button class="button button--secondary card-button" ng-click="ListPage.toggleCardForm($index)">Cancel</button>
+                <button class="button button--secondary card-button" type="button" ng-click="ListPage.toggleCardForm($index); ListPage.newCard.title=''; ListPage.newCard.description=''">Cancel</button>
                 <button class="button button--primary card-button" type="submit">Save</button>
             </div>
         </form>
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="position">
-                <button class="button button--secondary card-button" ng-click="ListPage.newListForm=false">Cancel</button>
+                <button class="button button--secondary card-button" type="button" ng-click="ListPage.newListForm=false">Cancel</button>
                 <button class="button button--primary card-button" type="submit">Save</button>
             </div>
         </form>
