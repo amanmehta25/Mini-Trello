@@ -13,7 +13,6 @@ angular
         '$scope', '$filter', '$http', '$window',
         function ($scope, $filter, $http, $window) {
             var boardPage = this, allUsersBoards, currentUser, currentUserBoards;
-            console.log('initializing controller');
             boardPage.newBoardForm = false;
             boardPage.newBoard = {
                 id: '',
