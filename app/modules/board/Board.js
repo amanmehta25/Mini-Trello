@@ -18,7 +18,6 @@ angular
             Board.logOut = function () {
                 $window.localStorage.removeItem('current-user');
                 $window.localStorage.removeItem('current-user-boards');
-                $window.localStorage.removeItem('user-boards');
                 $state.go('auth.log-in');
             };
         }
