@@ -15,7 +15,7 @@ angular
             var signUp = this;
             signUp.newUser = {};
 
-            if($window.localStorage.getItem('users')){
+            if ($window.localStorage.getItem('users')) {
                 signUp.users = JSON.parse($window.localStorage.getItem('users'));
             } else {
                 $http({
@@ -27,16 +27,16 @@ angular
             }
 
             signUp.createNewUser = function () {
-                var flag = 0; 
+                var flag = 0;
                 angular.forEach(signUp.users, function (user) {
-                    if(user.name === signUp.newUser.name &&
+                    if (user.name === signUp.newUser.name &&
                         user.password === signUp.newUser.password) {
                         flag = 1;
                         Utils.infoToastr('Please log in to continue', 'You are already an existing user!');
                     }
                 });
 
-                if(flag === 0) {
+                if (flag === 0) {
                     signUp.newUser.id = signUp.users.length + 1;
                     signUp.users.push(signUp.newUser);
                     $window.localStorage.setItem('users', JSON.stringify(signUp.users));

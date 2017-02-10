@@ -17,7 +17,6 @@ module.exports = function (grunt) {
         ngtemplates: 'grunt-angular-templates',
         cdnify: 'grunt-google-cdn',
         sass: 'grunt-contrib-sass',
-        minjson: 'grunt-minjson',
         scsslint: 'grunt-scss-lint'
     });
 
@@ -580,7 +579,6 @@ module.exports = function (grunt) {
         'concat',
         'ngAnnotate',
         'copy:dist',
-        'minjson',
         'cdnify',
         'cssmin',
         'uglify',

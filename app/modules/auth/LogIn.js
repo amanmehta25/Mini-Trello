@@ -15,7 +15,7 @@ angular
             var logIn = this;
             logIn.user = {};
 
-            if($window.localStorage.getItem('users')){
+            if ($window.localStorage.getItem('users')) {
                 logIn.users = JSON.parse($window.localStorage.getItem('users'));
             } else {
                 $http({
@@ -29,7 +29,7 @@ angular
             logIn.verifyUser = function () {
                 var flag = 0, currentUser;
                 angular.forEach(logIn.users, function (user) {
-                    if(user.name === logIn.user.name &&
+                    if (user.name === logIn.user.name &&
                         user.password === logIn.user.password) {
                         flag = 1;
                         currentUser = {
@@ -41,13 +41,12 @@ angular
                     }
                 });
 
-                if(flag === 0) {
+                if (flag === 0) {
                     Utils.errorToastr('Your login credentials are not correct. Please retry.');
                 } else {
                     $window.localStorage.setItem('current-user', JSON.stringify(currentUser));
                     $state.go('board.boards', { userId: currentUser.id});
                 }
-            }
-
+            };
         }
     ]);

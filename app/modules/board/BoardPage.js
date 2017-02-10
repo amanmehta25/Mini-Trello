@@ -23,7 +23,7 @@ angular
 
             currentUser = JSON.parse($window.localStorage.getItem('current-user'));
 
-            if($window.localStorage.getItem('user-boards')) {
+            if ($window.localStorage.getItem('user-boards')) {
                 allUsersBoards = JSON.parse($window.localStorage.getItem('user-boards'));
                 currentUserBoards = $filter('filter')(allUsersBoards, { user_id: currentUser.id })[0];
                 boardPage.boards = currentUserBoards.boards;
@@ -44,16 +44,16 @@ angular
             boardPage.createNewBoard = function () {
                 var i;
                 angular.forEach(allUsersBoards, function (boards, index) {
-                    if(boards.user_id === parseInt(currentUser.id)) {
+                    if (boards.user_id === parseInt(currentUser.id)) {
                         i = index;
                     }
                 });
 
                 boardPage.newBoard.id = boardPage.boards.length + 1;
 
-                if(typeof i === 'undefined') {
+                if (typeof i === 'undefined') {
                     i = allUsersBoards.length + 1;
-                    allUserBoards = allUsersBoards.concat({
+                    allUsersBoards = allUsersBoards.concat({
                         user_id: i,
                         boards: [boardPage.newBoard]
                     });
