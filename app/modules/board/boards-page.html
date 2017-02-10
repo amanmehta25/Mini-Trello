@@ -1,0 +1,24 @@
+<div class="board-container text-center">
+    <div ng-show="BoardPage.boards.length > 0">
+        <div class="board-item" ui-sref="board.lists({boardId: board.id})" ng-repeat="board in BoardPage.boards track by board.id">
+            <div class="board-item__name">{{ board.name }}</div>
+            <div>You have {{ board.lists.length }} lists in this board.</div>
+        </div>
+    </div>
+    <div class="no-board" ng-show="BoardPage.boards.length == 0">
+        You have no saved boards.
+    </div>
+    <form class="board-form" ng-show="BoardPage.newBoardForm == true" ng-submit="BoardPage.createNewBoard()">
+        <div class="form-group">
+            <div class="input-group input-group--full-width">
+                <input class="form-control" type="text" name="boardname" ng-model="BoardPage.newBoard.name" placeholder="Enter board name" required />
+            </div>
+            <i class="board-warning">Please choose different names for the board</i>
+        </div>
+        <div class="position">
+            <button class="button button--secondary board-form-button" ng-click="BoardPage.newBoardForm=false">Cancel</button>
+            <button class="button button--primary board-form-button" type="submit">Save</button>
+        </div>
+    </form>
+    <button class="button button--primary" ng-show="BoardPage.newBoardForm == false" ng-click="BoardPage.newBoardForm=true"> Create a new board </button>
+</div>

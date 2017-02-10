@@ -1,0 +1,22 @@
+<div class="sign-up">
+    <div class="sign-up__heading">Sign Up for New Users</div>
+    <form ng-submit="SignUp.createNewUser()">
+        <div class="form-group">
+            <div class="input-group input-group--full-width">
+                <input class="form-control" type="text" name="username" ng-model="SignUp.newUser.name" placeholder="Username" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group input-group--full-width">
+                <input class="form-control" type="password" name="password" ng-model="SignUp.newUser.password" minlength="6" maxlength="10" placeholder="Password" required />
+            </div>
+        </div>
+        <div class="position">
+            <button class="button button--primary" type="submit">Sign Up</button>
+        </div>
+    </form>
+    <div class="sign-up__log-in">
+        Already have an account?
+        <a ui-sref="auth.log-in">Log In</a>
+    </div>
+</div>

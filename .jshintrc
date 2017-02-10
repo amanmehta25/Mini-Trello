@@ -1,0 +1,22 @@
+{
+  "bitwise": true,
+  "browser": true,
+  "curly": true,
+  "eqeqeq": true,
+  "esnext": true,
+  "jasmine": false,
+  "jquery": false,
+  "latedef": true,
+  "noarg": true,
+  "node": true,
+  "phantom": false,
+  "prototypejs": false,
+  "strict": true,
+  "undef": true,
+  "unused": true,
+  "globals": {
+    "angular": false,
+    "$": false,
+    "google": false
+  }
+}

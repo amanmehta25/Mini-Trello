@@ -1,0 +1,22 @@
+<div class="log-in">
+    <div class="log-in__heading">Sign In into Your Account</div>
+    <form ng-submit="LogIn.verifyUser()">
+        <div class="form-group">
+            <div class="input-group input-group--full-width">
+                <input class="form-control" type="text" name="username" ng-model="LogIn.user.name" placeholder="Username" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group input-group--full-width">
+                <input class="form-control" type="password" name="password" ng-model="LogIn.user.password" minlength="6" maxlength="10" placeholder="Password" required />
+            </div>
+        </div>
+        <div class="position">
+            <button class="button button--primary" type="submit">Log In</button>
+        </div>
+    </form>
+    <div class="log-in__sign-up">
+        Don't have an account?
+        <a ui-sref="auth.sign-up">Sign Up</a>
+    </div>
+</div>

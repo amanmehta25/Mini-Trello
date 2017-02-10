@@ -1,0 +1,44 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+
+.button-disabled {
+    background-color: #ccc !important;
+    cursor: default !important;
+    border: 1px solid #ccc !important;
+    pointer-events: none;
+}
+
+.button {
+    @include add-box-shadows(none);
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    position: relative;
+    outline: none;
+    border-radius: $small-border-radius;
+    min-width: 140px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 15px;
+    text-align: center;
+    display: inline-block;
+    color: $color-white;
+    background-color: $color-orange;
+    border: 1px solid $color-orange;
+    cursor: pointer;
+    font-weight: 500;
+
+    &--primary {
+        color: $color-white;
+        background-color: $color-orange;
+    }
+
+    &--secondary {
+        border: 1px solid $color-orange;
+        color: $color-orange;
+        background-color: $color-white;
+        margin-right: 16px;
+    }
+}

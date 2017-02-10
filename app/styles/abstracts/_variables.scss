@@ -1,0 +1,40 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+/* Base colors */
+$color-white: #fff;
+$color-gray-dark: #333;
+$color-gray-light: #666;
+$color-gray-lighter: #999;
+$color-gray-lightest: #ccc;
+$color-orange: #e96125;
+$color-bg-light: #eee;
+$color-bg-dark: #333645;
+$color-border: #ddd;
+$color-border-light: #eee;
+$color-border-lighter: #f2f2f2;
+$color-green: #57c424;
+$color-blocks-bg: #fdfdfd;
+$color-bg-blue: #f7fcfd;
+$color-bg-blue-border: #d9eff4;
+$color-orange-light: #f5a623;
+$color-blue: #37a3be;
+$color-red: #ed5353;
+$color-yellow: #f5a623;
+$color-block-error: #fff0f0;
+$color-dropdown-bg: #f7f7f7;
+
+/* Fonts */
+$base-smaller-font: 10px;
+$base-small-font: 12px;
+$base-font: 14px;
+$base-medium-font: 16px;
+$base-large-font: 18px;
+$base-largest-font: 20px;
+$base-font-family: 'Celias';
+$base-font-weight: 500;
+
+/* Border radius */
+$base-border-radius: 3px;
+$small-border-radius: 2px;

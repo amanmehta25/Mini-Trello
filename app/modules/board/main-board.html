@@ -1,0 +1,5 @@
+<div class="log-out">
+	<div class="cursor pull-right" ng-click="Board.logOut()">Log Out</div>
+	<div class="cursor" ng-show="!Board.state.includes('board.boards')" ui-sref="board.boards({boardId: Board.state.params.userId})">< Back to Boards </div>
+</div>
+<div ui-view></div>

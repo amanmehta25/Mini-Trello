@@ -1,0 +1,29 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the Sign Up/Log In page.
+// -----------------------------------------------------------------------------
+.sign-up,
+.log-in {
+    border: 1px solid #ccc;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.sign-up__heading,
+.log-in__heading {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.sign-up__log-in,
+.log-in__sign-up {
+    font-size: 16px;
+    margin-top: 24px;
+
+    a {
+        color: #333;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+}
+

@@ -1,0 +1,46 @@
+// -----------------------------------------------------------------------------
+// This file contains CSS helper classes.
+// -----------------------------------------------------------------------------
+
+.bold {
+    font-weight: 500;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.inline {
+    display: inline-block !important;
+}
+
+.align-top {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.align-middle {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.align-baseline {
+    display: inline-block;
+    vertical-align: baseline;
+}

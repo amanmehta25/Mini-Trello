@@ -1,0 +1,51 @@
+<div class="list-container" ng-dblclick="ListPage.addList()">
+    <div ng-repeat="list in ListPage.lists track by $index" class="list">
+        <div class="list-name">{{ list.name }}</div>
+        <!-- The dnd-list directive allows to drop elements into it.
+        The dropped data will be added to the referenced list -->
+        <ul class="list-content" dnd-list="list.cards">
+            <!-- The dnd-draggable directive makes an element draggable and will
+                 transfer the object that was assigned to it. If an element was
+                 dragged away, you have to remove it from the original list
+                 yourself using the dnd-moved attribute -->
+            <li ng-repeat="item in list.cards"
+                dnd-draggable="item"
+                dnd-moved="list.cards.splice($index, 1)"
+                dnd-effect-allowed="move"
+                >
+                {{ item.title }}
+            </li>
+        </ul>
+        <form class="card-form" ng-show="ListPage.newCardForm[$index]" ng-submit="ListPage.createNewCard($index)">
+            <div class="form-group">
+                <div class="input-group input-group--full-width">
+                    <input class="form-control" type="text" name="card-title" ng-model="ListPage.newCard.title" placeholder="Enter card title" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group input-group--full-width">
+                    <input class="form-control" type="text" name="card-desc" ng-model="ListPage.newCard.description" placeholder="Enter card description" required />
+                </div>
+            </div>
+            <div class="position">
+                <button class="button button--secondary card-button" ng-click="ListPage.toggleCardForm($index)">Cancel</button>
+                <button class="button button--primary card-button" type="submit">Save</button>
+            </div>
+        </form>
+        <button class="button button--primary" ng-show="!ListPage.newCardForm[$index]" ng-click="ListPage.toggleCardForm($index)"> Add Card </button>
+    </div>
+    <div class="new-list">
+        <div class="new-list__heading" ng-show="ListPage.newListForm == false" ng-click="ListPage.newListForm=true">Add new list</div>
+        <form class="list-form" ng-show="ListPage.newListForm" ng-submit="ListPage.createNewList()">
+            <div class="form-group">
+                <div class="input-group input-group--full-width">
+                    <input class="form-control" type="text" name="list-name" ng-model="ListPage.newList.name" placeholder="Enter list name" required />
+                </div>
+            </div>
+            <div class="position">
+                <button class="button button--secondary card-button" ng-click="ListPage.newListForm=false">Cancel</button>
+                <button class="button button--primary card-button" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
