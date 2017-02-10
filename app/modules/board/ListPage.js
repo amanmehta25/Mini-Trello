@@ -30,11 +30,6 @@ angular
                 listPage.newCardForm[index] = !listPage.newCardForm[index];
             };
 
-            function setUserBoard() {
-                $window.localStorage.setItem('current-user-boards', JSON.stringify(listPage.boards));
-                $window.localStorage.setItem('user-boards', JSON.stringify(allUsersBoards));
-            }
-
             if ($window.localStorage.getItem('user-boards')) {
                 allUsersBoards = JSON.parse($window.localStorage.getItem('user-boards'));
                 currentUserBoards = $filter('filter')(allUsersBoards, { user_id: $stateParams.userId })[0];
@@ -51,7 +46,7 @@ angular
                 listPage.lists.push(angular.copy(listPage.newList));
                 listPage.newList.name = '';
                 listPage.newListForm = false;
-                setUserBoard();
+                $window.localStorage.setItem('user-boards', JSON.stringify(allUsersBoards));
             };
 
             listPage.createNewCard = function (index) {
@@ -65,11 +60,11 @@ angular
                     description: ''
                 };
                 listPage.toggleCardForm(index);
-                setUserBoard();
+                $window.localStorage.setItem('user-boards', JSON.stringify(allUsersBoards));
             };
 
             $scope.$watch('lists', function() {
-                setUserBoard();
+                $window.localStorage.setItem('user-boards', JSON.stringify(allUsersBoards));
             }, true);
         }
     ]);

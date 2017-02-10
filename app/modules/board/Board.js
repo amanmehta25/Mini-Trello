@@ -15,9 +15,13 @@ angular
             var Board = this;
             Board.state = $state;
 
+            if (!$window.localStorage.getItem('isLoggedIn')) {
+                $state.go('auth.log-in');
+                return;
+            }
+
             Board.logOut = function () {
-                $window.localStorage.removeItem('current-user');
-                $window.localStorage.removeItem('current-user-boards');
+                $window.localStorage.removeItem('isLoggedIn');
                 $state.go('auth.log-in');
             };
         }

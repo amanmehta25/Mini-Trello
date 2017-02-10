@@ -49,7 +49,7 @@ angular
                 if (flag === 0) {
                     Utils.errorToastr('Your login credentials are not correct. Please retry.');
                 } else {
-                    $window.localStorage.setItem('current-user', JSON.stringify(currentUser));
+                    $window.localStorage.setItem('isLoggedIn', true);
                     $state.go('board.boards', { userId: currentUser.id});
                 }
             };

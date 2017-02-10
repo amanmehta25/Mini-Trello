@@ -12,7 +12,7 @@ angular
     .controller('BoardPage', [
         '$scope', '$filter', '$http', '$stateParams', '$window',
         function ($scope, $filter, $http, $stateParams, $window) {
-            var boardPage = this, allUsersBoards, currentUser, currentUserBoards;
+            var boardPage = this, allUsersBoards, currentUserId, currentUserBoards;
             boardPage.newBoardForm = false;
             boardPage.newBoard = {
                 id: '',
@@ -20,18 +20,17 @@ angular
                 lists: []
             };
 
-            currentUser = JSON.parse($window.localStorage.getItem('current-user'));
+            currentUserId = parseInt($stateParams.userId);
 
             function setUserBoard(data) {
-                currentUserBoards = $filter('filter')(data, { user_id: currentUser.id })[0];
+                currentUserBoards = $filter('filter')(data, { user_id: currentUserId })[0];
                 if (typeof currentUserBoards === 'undefined') {
                     currentUserBoards = {
-                        user_id: parseInt($stateParams.userId),
+                        user_id: currentUserId,
                         boards: []
                     };
                 }
                 boardPage.boards = currentUserBoards.boards;
-                $window.localStorage.setItem('current-user-boards', JSON.stringify(boardPage.boards));
             }
 
             if ($window.localStorage.getItem('user-boards')) {
@@ -51,7 +50,7 @@ angular
             boardPage.createNewBoard = function () {
                 var i;
                 angular.forEach(allUsersBoards, function (boards, index) {
-                    if (boards.user_id === parseInt(currentUser.id)) {
+                    if (boards.user_id === currentUserId) {
                         i = index;
                     }
                 });
@@ -60,7 +59,7 @@ angular
 
                 if (typeof i === 'undefined') {
                     allUsersBoards.push({
-                        user_id: parseInt($stateParams.userId),
+                        user_id: currentUserId,
                         boards: [angular.copy(boardPage.newBoard)]
                     });
                     setUserBoard(allUsersBoards);
@@ -68,7 +67,6 @@ angular
                     allUsersBoards[i].boards.push(angular.copy(boardPage.newBoard));
                 }
                 $window.localStorage.setItem('user-boards', JSON.stringify(allUsersBoards));
-                $window.localStorage.setItem('current-user-boards', JSON.stringify(boardPage.boards));
                 boardPage.newBoardForm = false;
                 boardPage.newBoard.id = '';
                 boardPage.newBoard.name = '';
