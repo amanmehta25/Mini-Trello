@@ -27,6 +27,11 @@ angular
             }
 
             signUp.createNewUser = function () {
+                // Add this for proper validation on mobile
+                if (signUp.newUser.name === '' || signUp.newUser.password === '') {
+                    Utils.infoToastr('You need to enter both username and passowrd');
+                    return;
+                }
                 var flag = 0;
                 angular.forEach(signUp.users, function (user) {
                     if (user.name === signUp.newUser.name &&

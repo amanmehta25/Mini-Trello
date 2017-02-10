@@ -27,6 +27,11 @@ angular
             }
 
             logIn.verifyUser = function () {
+                // Add this for proper validation on mobile
+                if (logIn.user.name === '' || logIn.user.password === '') {
+                    Utils.infoToastr('You need to enter both username and passowrd');
+                    return;
+                }
                 var flag = 0, currentUser;
                 angular.forEach(logIn.users, function (user) {
                     if (user.name === logIn.user.name &&
