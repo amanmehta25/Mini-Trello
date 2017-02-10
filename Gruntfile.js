@@ -17,6 +17,7 @@ module.exports = function (grunt) {
         ngtemplates: 'grunt-angular-templates',
         cdnify: 'grunt-google-cdn',
         sass: 'grunt-contrib-sass',
+        minjson: 'grunt-minjson',
         scsslint: 'grunt-scss-lint'
     });
 
@@ -382,6 +383,16 @@ module.exports = function (grunt) {
             }
         },
 
+        minjson: {
+            compile: {
+                files: {
+                    // Minify one json file
+                    '<%= yeoman.dist %>/json/users.json': '<%= yeoman.app %>/json/users.json',
+                    '<%= yeoman.dist %>/json/boards.json': '<%= yeoman.app %>/json/boards.json'
+                }
+            }
+        },
+
         ngtemplates: {
             dist: {
                 options: {
@@ -579,6 +590,7 @@ module.exports = function (grunt) {
         'concat',
         'ngAnnotate',
         'copy:dist',
+        'minjson',
         'cdnify',
         'cssmin',
         'uglify',
